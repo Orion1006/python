@@ -14,3 +14,5 @@ Outbound Interface    FastEthernet0/0
 
 """
 file = open('ospf.txt', 'r')
+for line in file:
+        print(line)
