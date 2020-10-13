@@ -11,5 +11,5 @@
 
 mac = "AAAA:BBBB:CCCC"
 mac = str(bin(int(mac.replace(':', ""), 16)))
-mac = [mac.find('b')+1:]
+mac = mac[mac.find('b')+1:]
 print(mac)
