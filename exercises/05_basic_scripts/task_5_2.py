@@ -24,3 +24,17 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+ip = input()
+ipNetwork = ip[:ip.find('/')].split('.')
+ipMask = ip[ip.find('/'):]
+network = '''{0:<10}{1:<10}{2:<10}{3:<10}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}'''.format(int(ipNetwork[0]), int(ipNetwork[1]), int(ipNetwork[2]), int(ipNetwork[3]))
+maskBin = '1' * int(ipMask[1:])+'0' * (32-int(ipMask[1:]))
+maskBin = (maskBin[:8]+' '+maskBin[8:16]+' ' +
+           maskBin[16:24]+' '+maskBin[24:]).split()
+
+mask = '''{0:<10}{1:<10}{2:<10}{3:<10}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}'''.format(int(maskBin[0], 2), int(maskBin[1], 2), int(maskBin[2], 2), int(maskBin[3], 2))
+
+out = f"Network:\n{network}\nMask:\n{ipMask}\n{mask}"
+print(out)
