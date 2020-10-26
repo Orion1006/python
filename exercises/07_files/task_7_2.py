@@ -12,3 +12,7 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+with open('config_sw1.txt', 'r') as file:
+    for line in file.readlines():
+        if line.startswith('!') == False:
+            print(line.strip())
