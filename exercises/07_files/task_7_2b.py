@@ -14,3 +14,10 @@
 """
 
 ignore = ["duplex", "alias", "Current configuration"]
+with open('config_sw1.txt', 'r') as read, open('config_sw1_cleared.txt', 'a') as write:
+    for line in read.readlines():
+        for word in ignore:
+            if line.find(word) != -1:
+                break
+        else:
+            write.write(line)

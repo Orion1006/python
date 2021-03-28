@@ -17,3 +17,6 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+with open('CAM_table.txt', 'r') as r_file:
+    for line in r_file.readlines()[6:]:
+        print("{0:6}{1:17}{3:}".format(*line.split()))

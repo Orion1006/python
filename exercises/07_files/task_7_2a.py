@@ -13,3 +13,11 @@
 """
 
 ignore = ["duplex", "alias", "Current configuration"]
+with open('config_sw1.txt', 'r') as file:
+    for line in file.readlines():
+        if line.startswith('!') == False:
+            for word in ignore:
+                if line.find(word) != -1:
+                    break
+            else:
+                print(line.strip())

@@ -21,3 +21,27 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+def get_int_vlan_map(config_filename):
+    result_access = dict()
+    result_trunk = dict()
+    mode = ''
+    with open(config_filename, 'r') as file:
+        temp = list()
+        for line in file:
+            if line.find('interface') != -1:
+                temp.append(line[10:].rstrip())
+            elif line.find("vlan") != -1:
+                mode = 'access' if line.find('access') != -1 else 'trunk'
+                temp.append(line[line.find('vlan')+5:].rstrip().split(','))
+            if len(temp) == 2:
+                if mode == 'access':
+                    result_access.update({temp[0]: int(*temp[1])})
+                elif mode == 'trunk' and type(temp[1]) is list:
+                    temp_l = [int(item) for item in temp[1]]
+                    result_trunk.update({temp[0]: temp_l})
+                temp.clear()
+
+    return result_access, result_trunk
+
+
+print(get_int_vlan_map("config_sw1.txt"))
